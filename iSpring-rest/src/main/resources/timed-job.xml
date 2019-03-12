@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xmlns:task="http://www.springframework.org/schema/task"
+	   xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+    	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+    	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+		http://www.springframework.org/schema/task
+       http://www.springframework.org/schema/task/spring-task-4.0.xsd">
+
+	<task:annotation-driven/>
+	<task:scheduler id="myScheduler" pool-size="5"/>
+	<task:scheduled-tasks scheduler="myScheduler">
+		<task:scheduled ref="task" method="taskTest" fixed-delay="${fixed_delay}" initial-delay="${initial_delay}"/>
+	</task:scheduled-tasks>
+
+
+	<bean id="task" class="lee.iSpring.rest.core.Task"/>
+</beans>

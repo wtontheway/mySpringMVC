@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:cache="http://www.springframework.org/schema/cache"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+    	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+    	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+
+	<bean class="lee.iSpring.common.util.SpringContextHolder" lazy-init="false" />
+
+	<!-- 属性文件读入 -->
+	<bean id="propertyConfigurer"
+		  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:config.properties</value>
+				<value>classpath:dbcp.properties</value>
+			</list>
+		</property>
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+	</bean>
+
+	<context:component-scan base-package="lee.iSpring">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"></context:exclude-filter>
+	</context:component-scan>
+
+
+
+	<import resource="bizbeans.xml"/>
+	<import resource="aopbeans.xml"/>
+
+	<import resource="otherbeans.xml"/>
+	<import resource="daobeans.xml"/>
+	<import resource="timed-job.xml"/>
+
+	<bean id="mutiDataSourceBean" class="lee.iSpring.common.datasource.MutiDataSourceBean"/>
+
+	<!-- 配置controller异常处理 -->
+	<bean id="exceptionHandler" class="lee.iSpring.common.exception.DefaultExceptionHandler" />
+ </beans>
+ 

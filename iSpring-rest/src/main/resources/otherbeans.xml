@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+    	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+    	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
+
+	<bean id="propertiesObject" class="lee.iSpring.common.bean.PropertiesObject">
+
+		<!-- 设定 mode = "trace" 开启 TraceInterceptor, AOP 等 ，正式上线建议关闭 -->
+		<property name="mode" value="trace" />
+		<property name="mongoUrl" value="mongodb://sa:r123456@127.0.0.1:27017/logDB"/>
+
+		<!-- redis -->
+		<property name="redisHost" value="127.0.0.1"/>
+		<property name="redisPort" value="6379"/>
+		<property name="redisExpiration" value="3000"/>
+		<!--<property name="redisPassword" value="5EdRC3323"/>-->
+
+
+	</bean>
+</beans>
